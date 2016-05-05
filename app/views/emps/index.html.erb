@@ -1,0 +1,51 @@
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h4>Resource Development Employee List</h4>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+			<% @emps.each do |emp| %>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-md-4">
+							<%= link_to image_tag(emp.image, size:"95x115", alt:emp.last_name, class: "thumbnail img-rounded") , emp_path(emp)  %>
+						</div>
+						<div class="col-md-8">
+							<ul class="list-unstyled">
+								<li class="btn btn-info"><strong>ID:</strong> <span class="badge badge-info"> <%= emp.emp_number %></span></li>
+								<li><strong>Name:</strong> <%= emp.first_name %> <%= emp.last_name %></li>
+								<li><strong>Dept:</strong> <%= emp.department %></li>
+								<li><strong>Position</strong> <%= emp.position %></li>
+								<li><strong> Hired Date:</strong> <%= emp.hired_date.to_time.strftime('%b %e %y') %></li>
+							</ul>
+						</div>
+					</div>
+					<!-- end inner row for col-sm-4 col-sm-8 -->
+					<div class="row">
+						<div class="col-sm-4">
+							<% if current_user.try(:admin?) %>
+							  	<%= link_to "Edit", edit_emp_path(emp)  %> <span class="glyphicon glyphicon-grain"></span> <%= link_to "Show", emp_path(emp)  %>
+							<% else %>
+							  <span class="glyphicon glyphicon-grain"></span> <%= link_to "Show", emp_path(emp)  %>
+							<% end %>
+
+<hr>
+						</div>
+						<div class="col-sm-8">
+							<div>
+								<% if @lvs.blank? %>
+									Vacation Took <%= @leave_total %>
+								<% else %>
+									Vaction Took <%= @leave_left %> days vacation
+								<% end %>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

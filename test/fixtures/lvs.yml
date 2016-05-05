@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lv_date: 2016-04-25 11:25:50
+  lv_from: 2016-04-25 11:25:50
+  lv_to: 2016-04-25 11:25:50
+  lv_unit: 1.5
+  lv_type: MyString
+  lv_reason: MyText
+  emp_id: 
+
+two:
+  lv_date: 2016-04-25 11:25:50
+  lv_from: 2016-04-25 11:25:50
+  lv_to: 2016-04-25 11:25:50
+  lv_unit: 1.5
+  lv_type: MyString
+  lv_reason: MyText
+  emp_id: 

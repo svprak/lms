@@ -1,0 +1,73 @@
+<%= form_for @emp, html:{multipart: true, class:''} do |f| %>
+      <div class="panel-body">
+        <% if @emp.errors.any? %>
+        <div id="error_explanation" class="">
+          <h2><%= pluralize(@emp.errors.count, "error") %> cannot be saved:</h2>
+          <ul>
+            <% @emp.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label "ID Number" %><br>
+          <%= f.text_field :emp_number, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Social security number" %><br>
+          <%= f.text_field :ssn, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "National Social security Fund number (NSSF)" %><br>
+          <%= f.text_field :nssfn, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :first_name %><br>
+          <%= f.text_field :first_name, class: "form-control", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name %><br>
+          <%= f.text_field :last_name , class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label "Gender" %><br>
+          <%= f.text_field :emp_sex , class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label "Photo" %><br />
+          <%= f.file_field :image, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :department %><br>
+          <%= f.text_field :department, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :hired_date %><br>
+          <%= f.date_field :hired_date, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :position %><br>
+          <%= f.text_field :position, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Contact Person" %><br>
+          <%= f.text_field :contact_info,  class: "form-control"  %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Phone Number" %><br>
+          <%= f.phone_field :phone , class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label :address %><br>
+          <%= f.text_area :address, class: "form-control" %>
+        </div>
+    </div> <!-- end panel-body -->
+    <div class="panel-footer">
+      <div class="actions">
+        <%= f.submit class: "btn btn-danger pull-right" %>
+        <%= link_to "Cancel", emps_path,   class: "btn btn-primary" %>
+      </div>
+    </div>
+
+<% end %>

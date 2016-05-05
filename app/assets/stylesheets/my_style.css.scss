@@ -1,0 +1,28 @@
+$color:#08969a;
+$nav-color:#fff;
+$navbar-default-bg: darken($nav-color, 15%);
+$badge-color: rgb(254, 254, 254);
+$body-bg:#eee;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.foot {
+  border-top: 1px solid #b1b1b1;
+
+}
+footer{
+  height:150px;
+}
+ footer ul  {
+   float: right;
+ }
+ footer li {
+   display: inline-block;
+   text-decoration: none;
+   padding-right: 10px;
+   margin-top: 15px;
+ }
+ footer small {
+   margin-top: 15px;
+   float: left;
+ }

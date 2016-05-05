@@ -1,0 +1,45 @@
+<%= form_for([@emp,@lv]) do |f| %>
+  <div class="panel-body">
+  <% if @lv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lv.errors.count, "error") %> prohibited this lv from being saved:</h2>
+      <ul>
+      <% @lv.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Date" %>
+    <%= f.date_field :lv_date , class: 'form-control'%>
+  </div>
+  <div class="form-group">
+    <%= f.label "Date From" %>
+    <%= f.date_field :lv_from, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Date To" %>
+    <%= f.date_field :lv_to, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Number of Day" %>
+    <%= f.text_field :lv_unit, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Leave Type" %>
+    <%= f.text_field :lv_type, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Leave Reason" %>
+    <%= f.text_area :lv_reason, rows: 5, class: 'form-control' %>
+  </div>
+</div> <!-- end panel-body -->
+<div class="panel-footer">
+  <div class="actions">
+    <%= f.submit class: "btn btn-danger pull-right" %>
+    <%= link_to "Back", emp_path(@emp),   class: "btn btn-primary" %>   <%= link_to "Home", root_path,   class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>

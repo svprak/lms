@@ -1,0 +1,91 @@
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4>Employee Leave Information</h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-md-5">
+              <%= image_tag(@emp.image, size:"190x250", alt:@emp.last_name, class: "thumbnail img-rounded")   %>
+            </div>
+            <div class="col-md-7">
+              <ul class="list-unstyled">
+                <li><strong>ID:</strong> <span class="badge badge-info"> <%= @emp.emp_number %></span></li>
+                <li><strong>Name:</strong> <%= @emp.first_name %> <%= @emp.last_name %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <% if @lvs.blank? %>
+            <div class="list-group">
+              <h4 class="list-group-item active">Vacation Details</h4>
+              <h5 class="list-group-item">You have <%= @leave_total %> days vacation</h5>
+              <h5 class="list-group-item">You took <%= @leave_taken %> day </h5>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @aria_value_now %>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                <%= ((@leave_taken*100)/12).round(2) %>%</div>
+              </div>
+          <% else %>
+            <div class="list-group">
+              <h4 class="list-group-item active">Vacation Details</h4>
+              <h5 class="list-group-item">You have <%= @leave_left %> days vacation</h5>
+              <h5 class="list-group-item">You took <%= @leave_taken %> days </h5>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @aria_value_now %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@leave_taken*100)/12%>%;">
+                <%= @aria_value_now %>%</div>
+              </div>
+          <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+
+              <% if !@lvs.blank? %>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <th>N</th>
+                  <th>ថ្ងៃ​ដាក់ពាក្យ</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Unit</th>
+                  <th>Type</th>
+                  <th colspan="2">Reasons</th>
+                </thead>
+                <% @lvs.each do |l| %>
+                <tr>
+                  <td><%= @i=@i+1 %></td>
+                  <td><%= l.lv_date.strftime("%a - %d-%b-%y")%></td>
+                  <td><%= l.lv_from.strftime("%d-%b-%y")  %></td>
+                  <td><%= l.lv_to.strftime("%d-%b-%y")  %></td>
+                  <td><%= l.lv_unit %> day</td>
+                  <td><%= l.lv_type %></td>
+                  <td><%= l.lv_reason %></td>
+                  <td>
+                      <% if current_user.try(:admin?) %>
+                          	<%= link_to "Edit", edit_emp_lv_path(@emp,l) %> | <%= link_to "Delete",  emp_lv_path(@emp,l), :confirm => 'Are you sure?', :method => :delete %>
+                      <% else %>
+                          Confirmed
+                      <% end %>
+
+                    </td>
+
+                </tr>
+                <% end %>
+              </table>
+            <% end %>
+
+          </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div>
+            <%= link_to "Back", emps_path, class: "btn btn-primary" %>
+            <%= link_to "Add Leave", new_emp_lv_path(@emp), class: "btn btn-primary pull-right" %>
+          </div>
+        </div>
+      </div>
